@@ -517,16 +517,16 @@ final class TTF implements
 
         [$current, $text] = $this->getEncoding($text, $encoding);
 
-        switch ($current) {
-            case \mb_strlen($text) === 1:
+        switch (true) {
+            case \mb_strlen($text, $encoding) === 1:
                 $surface = $this->ffi->TTF_RenderGlyph_Solid($font, \ord($text), $color);
                 break;
 
-            case self::ENC_ASCII:
+            case $current === self::ENC_ASCII:
                 $surface = $this->ffi->TTF_RenderText_Solid($font, $text, $color);
                 break;
 
-            case self::ENC_UTF8:
+            case $current === self::ENC_UTF8:
                 $surface = $this->ffi->TTF_RenderUTF8_Solid($font, $text, $color);
                 break;
 
@@ -571,16 +571,16 @@ final class TTF implements
 
         [$current, $text] = $this->getEncoding($text, $encoding);
 
-        switch ($current) {
+        switch (true) {
             case \mb_strlen($text) === 1:
                 $surface = $this->ffi->TTF_RenderGlyph_Shaded($font, \ord($text), $color, $bg);
                 break;
 
-            case self::ENC_ASCII:
+            case $current === self::ENC_ASCII:
                 $surface = $this->ffi->TTF_RenderText_Shaded($font, $text, $color, $bg);
                 break;
 
-            case self::ENC_UTF8:
+            case $current === self::ENC_UTF8:
                 $surface = $this->ffi->TTF_RenderUTF8_Shaded($font, $text, $color, $bg);
                 break;
 
@@ -610,16 +610,16 @@ final class TTF implements
 
         [$current, $text] = $this->getEncoding($text, $encoding);
 
-        switch ($current) {
+        switch (true) {
             case \mb_strlen($text) === 1:
                 $surface = $this->ffi->TTF_RenderGlyph_Blended($font, \ord($text), $color);
                 break;
 
-            case self::ENC_ASCII:
+            case $current === self::ENC_ASCII:
                 $surface = $this->ffi->TTF_RenderText_Blended($font, $text, $color);
                 break;
 
-            case self::ENC_UTF8:
+            case $current === self::ENC_UTF8:
                 $surface = $this->ffi->TTF_RenderUTF8_Blended($font, $text, $color);
                 break;
 
