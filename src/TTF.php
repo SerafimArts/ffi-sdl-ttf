@@ -477,6 +477,8 @@ final class TTF implements
      */
     private function getEncoding(string $text, string $prefer = null): array
     {
+        $prefer ??= \mb_detect_encoding($text);
+
         switch (true) {
             case \strtolower($prefer) === 'ascii':
             case \mb_check_encoding($text, 'ASCII'):
@@ -494,7 +496,7 @@ final class TTF implements
                 break;
 
             default:
-                $text = \mb_convert_encoding($text, $prefer ?? \mb_detect_encoding($text), 'UTF-8');
+                $text = \mb_convert_encoding($text, $prefer, 'UTF-8');
 
                 return [self::ENC_ASCII, $text];
         }
