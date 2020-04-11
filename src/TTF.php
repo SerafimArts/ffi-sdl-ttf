@@ -467,7 +467,7 @@ final class TTF implements
                 $this->ffi->TTF_SizeUNICODE($font, $text, self::addr($width), self::addr($height));
         }
 
-        return [$width, $height];
+        return [$width->cdata, $height->cdata];
     }
 
     /**
