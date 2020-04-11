@@ -518,7 +518,7 @@ final class TTF implements
         [$current, $text] = $this->getEncoding($text, $encoding);
 
         switch (true) {
-            case \mb_strlen($text, $encoding) === 1:
+            case $encoding ? \mb_strlen($text, $encoding) === 1 : \mb_strlen($text) === 1:
                 $surface = $this->ffi->TTF_RenderGlyph_Solid($font, \ord($text), $color);
                 break;
 
@@ -572,7 +572,7 @@ final class TTF implements
         [$current, $text] = $this->getEncoding($text, $encoding);
 
         switch (true) {
-            case \mb_strlen($text) === 1:
+            case $encoding ? \mb_strlen($text, $encoding) === 1 : \mb_strlen($text) === 1:
                 $surface = $this->ffi->TTF_RenderGlyph_Shaded($font, \ord($text), $color, $bg);
                 break;
 
@@ -611,7 +611,7 @@ final class TTF implements
         [$current, $text] = $this->getEncoding($text, $encoding);
 
         switch (true) {
-            case \mb_strlen($text) === 1:
+            case $encoding ? \mb_strlen($text, $encoding) === 1 : \mb_strlen($text) === 1:
                 $surface = $this->ffi->TTF_RenderGlyph_Blended($font, \ord($text), $color);
                 break;
 
