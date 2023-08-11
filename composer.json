@@ -1,6 +1,6 @@
 {
     "name": "serafim/ffi-sdl-ttf",
-    "description": "PHP FFI to SDL TTF bindings",
+    "description": "SDL2 TTF FFI bindings for the PHP language",
     "type": "library",
     "license": "MIT",
     "support": {
@@ -25,10 +25,17 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": "^8.1",
         "ext-ffi": "*",
         "ext-mbstring": "*",
-        "serafim/ffi-sdl": "~1.0.3"
+        "ffi-headers/contracts": "^1.0",
+        "ffi/env": "^1.0",
+        "ffi/location": "^1.0",
+        "ffi/preprocessor": "^0.2",
+        "ffi/proxy": "^1.0",
+        "ffi/work-directory": "^1.0",
+        "psr/simple-cache": "^1.0|^2.0|^3.0",
+        "serafim/ffi-sdl": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -36,22 +43,36 @@
         }
     },
     "require-dev": {
-        "serafim/ffi-ide-helper": "^1.0"
+        "ffi/ide-helper-generator": "^0.1|^1.0",
+        "friendsofphp/php-cs-fixer": "^3.22",
+        "phpunit/phpunit": "^10.3",
+        "symfony/cache": "^5.4|^6.0",
+        "vimeo/psalm": "^5.14"
     },
     "autoload-dev": {
         "psr-4": {
             "Serafim\\SDL\\TTF\\Tests\\": "tests"
         }
     },
-    "config": {
-        "sort-packages": true,
-        "preferred-install": "source"
+    "scripts": {
+        "psalm": "@psalm:check",
+        "psalm:check": "psalm --no-cache",
+        "psalm:fix": "psalm --no-cache --alter",
+        "phpcs": "@phpcs:check",
+        "phpcs:check": "php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes --dry-run",
+        "phpcs:fix": "php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes",
+        "test": "@test:unit",
+        "test:unit": "phpunit --testdox"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev",
+            "dev-main": "2.0.x-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

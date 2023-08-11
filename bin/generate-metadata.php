@@ -1,0 +1,65 @@
+<?php
+
+declare(strict_types=1);
+
+use FFI\Generator\Metadata\CastXMLGenerator;
+use FFI\Generator\Metadata\CastXMLParser;
+use FFI\Generator\PhpStormMetadataGenerator;
+use FFI\Generator\SimpleNamingStrategy;
+use Serafim\SDL\TTF\Header;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+const INPUT_HEADERS = __DIR__ . '/SDL_ttf.h';
+const OUTPUT_METADATA = __DIR__ . '/metadata.xml';
+const OUTPUT_FILE = __DIR__ . '/../resources/generated/.phpstorm.meta.php';
+
+fwrite(STDOUT, " - [1/5] Generating header files\n");
+
+\file_put_contents(INPUT_HEADERS, <<<HEADERS
+    #include <stdint.h>
+
+    HEADERS . Header::create());
+
+fwrite(STDOUT, " - [2/5] Generating metadata files\n");
+
+if (!is_file(OUTPUT_METADATA)) {
+    (new CastXMLGenerator())
+        ->generate(INPUT_HEADERS)
+        ->save(OUTPUT_METADATA)
+    ;
+}
+
+fwrite(STDOUT, " - [3/5] Building AST\n");
+
+$ast = (new CastXMLParser())
+    ->parse(OUTPUT_METADATA)
+;
+
+fwrite(STDOUT, " - [4/5] Generating IDE helper\n");
+
+$result = (new PhpStormMetadataGenerator(
+        argumentSetPrefix: 'ffi_sdl_ttf_',
+        naming: new class(
+            entrypoint: Serafim\SDL\TTF\TTF::class,
+            externalNamespace: 'Serafim\SDL\TTF',
+        ) extends SimpleNamingStrategy {
+            protected function getEnumTypeName(string $name): string
+            {
+                return match ($name) {
+                    'TTF_Direction' => \Serafim\SDL\TTF\Direction::class,
+                    default => throw new \InvalidArgumentException(
+                        "Unprocessable mapping of enum \"$name\"",
+                    ),
+                };
+            }
+        }
+    ))
+        ->generate($ast)
+    ;
+
+fwrite(STDOUT, " - [5/5] Saving result\n");
+
+file_put_contents(OUTPUT_FILE, (string)$result);
+
+fwrite(STDOUT, "   [ ✓ ] DONE!\n");
