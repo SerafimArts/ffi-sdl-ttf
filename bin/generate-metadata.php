@@ -24,7 +24,7 @@ fwrite(STDOUT, " - [1/5] Generating header files\n");
 fwrite(STDOUT, " - [2/5] Generating metadata files\n");
 
 if (!is_file(OUTPUT_METADATA)) {
-    (new CastXMLGenerator())
+    (new CastXMLGenerator($_SERVER['FFI_GENERATOR_CASTXML_BINARY'] ?? 'castxml'))
         ->generate(INPUT_HEADERS)
         ->save(OUTPUT_METADATA)
     ;
@@ -40,6 +40,7 @@ fwrite(STDOUT, " - [4/5] Generating IDE helper\n");
 
 $result = (new PhpStormMetadataGenerator(
         argumentSetPrefix: 'ffi_sdl_ttf_',
+        ignoreDirectories: ['/usr', ...explode(',', $_SERVER['FFI_GENERATOR_IGNORE_PATHS'] ?? '')],
         naming: new class(
             entrypoint: Serafim\SDL\TTF\TTF::class,
             externalNamespace: 'Serafim\SDL\TTF',
