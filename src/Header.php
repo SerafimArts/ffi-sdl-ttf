@@ -59,6 +59,7 @@ final class Header implements HeaderInterface
             $ttfVersion = Version::create($ttfVersion->toString());
         }
 
+        // phpcs:disable
         $pre->define('_SDL_TTF_VERSION_GTE', static fn (string $expected): bool =>
             \version_compare($ttfVersion->toString(), $expected, '>=')
         );
@@ -68,6 +69,7 @@ final class Header implements HeaderInterface
         $pre->define('SDL_VERSION_ATLEAST', static fn (string $a, string $b, string $c): bool =>
             \version_compare($sdlVersion->toString(), \sprintf('%d.%d.%d', $a, $b, $c), '>=')
         );
+        // phpcs:enable
 
         $pre->add('SDL.h', self::SDL_H);
         $pre->add('SDL_version.h', '');
