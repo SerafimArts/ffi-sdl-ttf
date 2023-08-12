@@ -30,7 +30,7 @@ class Library extends BaseLibrary
             uint8_t minor;
             uint8_t patch;
         } SDL_Version;
-        
+
         extern const SDL_Version* TTF_Linked_Version(void);
     clang;
 

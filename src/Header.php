@@ -50,27 +50,23 @@ final class Header implements HeaderInterface
 
     public static function create(
         VersionInterface $sdlVersion = SDLVersion::LATEST,
-        VersionInterface $sdlTTFVersion = Version::LATEST,
+        VersionInterface $ttfVersion = Version::LATEST,
         PreprocessorInterface $pre = new Preprocessor(),
     ): self {
         $pre = clone $pre;
 
-        if (!$sdlTTFVersion instanceof ComparableInterface) {
-            $sdlTTFVersion = Version::create($sdlTTFVersion->toString());
+        if (!$ttfVersion instanceof ComparableInterface) {
+            $ttfVersion = Version::create($ttfVersion->toString());
         }
 
-        //
-        // Custom directive
-        //
         $pre->define('_SDL_TTF_VERSION_GTE', static fn (string $expected): bool =>
-            \version_compare($sdlTTFVersion->toString(), $expected, '>=')
+            \version_compare($ttfVersion->toString(), $expected, '>=')
         );
-
-        //
-        // Custom directive
-        //
         $pre->define('_SDL_VERSION_GTE', static fn (string $expected): bool =>
             \version_compare($sdlVersion->toString(), $expected, '>=')
+        );
+        $pre->define('SDL_VERSION_ATLEAST', static fn (string $a, string $b, string $c): bool =>
+            \version_compare($sdlVersion->toString(), \sprintf('%d.%d.%d', $a, $b, $c), '>=')
         );
 
         $pre->add('SDL.h', self::SDL_H);
@@ -80,10 +76,6 @@ final class Header implements HeaderInterface
 
         $pre->define('DECLSPEC', '');
         $pre->define('SDLCALL', '');
-        $pre->define('SDL_VERSION_ATLEAST',
-            static fn (string $maj = '1', string $min = '0', string $patch = '0'): bool =>
-                \version_compare($sdlVersion->toString(), \sprintf('%d.%d.%d', $maj, $min, $patch), '>=')
-        );
 
         return new self($pre);
     }
