@@ -184,7 +184,7 @@ namespace Serafim\SDL\TTF {
         public function TTF_OpenFont(string|\FFI\CData $file, int $ptsize): ?\FFI\CData;
         /**
          * @param int<-2147483648, 2147483647> $ptsize
-         * @param int<min, max> $index
+         * @param int<-2147483648, 2147483647> $index
          * @return null|\FFI\CData|array{\PHPSTORM_META\TTFFont}
          */
         public function TTF_OpenFontIndex(string|\FFI\CData $file, int $ptsize, int $index): ?\FFI\CData;
@@ -199,7 +199,7 @@ namespace Serafim\SDL\TTF {
          * @param null|\FFI\CData|array{\PHPSTORM_META\SDLRWops} $src
          * @param int<-2147483648, 2147483647> $freesrc
          * @param int<-2147483648, 2147483647> $ptsize
-         * @param int<min, max> $index
+         * @param int<-2147483648, 2147483647> $index
          * @return null|\FFI\CData|array{\PHPSTORM_META\TTFFont}
          */
         public function TTF_OpenFontIndexRW(?\FFI\CData $src, int $freesrc, int $ptsize, int $index): ?\FFI\CData;
@@ -212,7 +212,7 @@ namespace Serafim\SDL\TTF {
         public function TTF_OpenFontDPI(string|\FFI\CData $file, int $ptsize, int $hdpi, int $vdpi): ?\FFI\CData;
         /**
          * @param int<-2147483648, 2147483647> $ptsize
-         * @param int<min, max> $index
+         * @param int<-2147483648, 2147483647> $index
          * @param int<0, 4294967296> $hdpi
          * @param int<0, 4294967296> $vdpi
          * @return null|\FFI\CData|array{\PHPSTORM_META\TTFFont}
@@ -231,7 +231,7 @@ namespace Serafim\SDL\TTF {
          * @param null|\FFI\CData|array{\PHPSTORM_META\SDLRWops} $src
          * @param int<-2147483648, 2147483647> $freesrc
          * @param int<-2147483648, 2147483647> $ptsize
-         * @param int<min, max> $index
+         * @param int<-2147483648, 2147483647> $index
          * @param int<0, 4294967296> $hdpi
          * @param int<0, 4294967296> $vdpi
          * @return null|\FFI\CData|array{\PHPSTORM_META\TTFFont}
@@ -323,7 +323,7 @@ namespace Serafim\SDL\TTF {
         public function TTF_SetFontKerning(?\FFI\CData $font, int $allowed): void;
         /**
          * @param null|\FFI\CData|array{\PHPSTORM_META\TTFFont} $font
-         * @return int<min, max>
+         * @return int<-2147483648, 2147483647>
          */
         public function TTF_FontFaces(?\FFI\CData $font): int;
         /**
