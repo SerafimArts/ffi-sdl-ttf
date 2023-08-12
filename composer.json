@@ -1,22 +1,13 @@
 {
     "name": "serafim/ffi-sdl-ttf",
-    "description": "SDL2 TTF FFI bindings for the PHP language",
+    "description": "SDL TTF FFI bindings for the PHP language",
     "type": "library",
     "license": "MIT",
     "support": {
         "issues": "https://github.com/SerafimArts/ffi-sdl-ttf/issues",
         "source": "https://github.com/SerafimArts/ffi-sdl-ttf"
     },
-    "keywords": [
-        "sdl",
-        "ffi",
-        "bindings",
-        "opengl",
-        "graphics",
-        "library",
-        "ttf",
-        "font"
-    ],
+    "keywords": ["sdl", "ffi", "bindings", "opengl", "graphics", "library", "ttf", "font"],
     "homepage": "https://github.com/SerafimArts/ffi-sdl-ttf",
     "authors": [
         {
