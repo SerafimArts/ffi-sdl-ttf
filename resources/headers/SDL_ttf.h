@@ -19,6 +19,13 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
+#ifndef _SDL_VERSION_GTE
+    #define _SDL_VERSION_GTE(x) 1
+#endif
+
+#ifndef _SDL_TTF_VERSION_GTE
+    #define _SDL_TTF_VERSION_GTE(x) 1
+#endif
 
 /**
  *  \file SDL_ttf.h
