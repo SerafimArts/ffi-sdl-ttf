@@ -28,10 +28,10 @@ final class Header implements HeaderInterface
             typedef int SDL_bool;
             typedef uint16_t Uint16;
             typedef uint32_t Uint32;
-            typedef struct SDL_version SDL_version;
-            typedef struct SDL_RWops SDL_RWops;
-            typedef struct SDL_Surface SDL_Surface;
-            typedef struct SDL_Color SDL_Color;
+            typedef void* SDL_version;
+            typedef void* SDL_RWops;
+            typedef void* SDL_Surface;
+            typedef void* SDL_Color;
         #endif
         CPP;
 
