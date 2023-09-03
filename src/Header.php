@@ -26,12 +26,38 @@ final class Header implements HeaderInterface
         #ifndef SDL_h_
             #define SDL_h_
             typedef int SDL_bool;
+            typedef uint8_t Uint8;
             typedef uint16_t Uint16;
             typedef uint32_t Uint32;
-            typedef void* SDL_version;
+
             typedef void* SDL_RWops;
-            typedef void* SDL_Surface;
-            typedef void* SDL_Color;
+            typedef void* SDL_version;
+            typedef struct SDL_PixelFormat SDL_PixelFormat;
+            typedef struct SDL_BlitMap SDL_BlitMap;
+
+            typedef struct SDL_Surface {
+                Uint32 flags;
+                SDL_PixelFormat *format;
+                int w, h;
+                int pitch;
+                void *pixels;
+                void *userdata;
+                int locked;
+                void *list_blitmap;
+                struct SDL_Rect {
+                    int x, y;
+                    int w, h;
+                } clip_rect;
+                SDL_BlitMap *map;
+                int refcount;
+            } SDL_Surface;
+
+            typedef struct SDL_Color {
+                Uint8 r;
+                Uint8 g;
+                Uint8 b;
+                Uint8 a;
+            } SDL_Color;
         #endif
         CPP;
 
