@@ -139,7 +139,7 @@ $color->r = 120;
 $color->g = 100;
 $color->b = 80;
 
-$surface = $ttf->TTF_RenderText_Solid($font, 'Hello World!', FFI::addr($color));
+$surface = $ttf->TTF_RenderText_Solid($font, 'Hello World!', $color);
 
 $ttf->TTF_Quit();
 $sdl->SDL_Quit();
