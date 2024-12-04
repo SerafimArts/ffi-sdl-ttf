@@ -10,8 +10,6 @@ use FFI\CData;
  * @internal this is an internal library trait, please do not use it in your code
  * @psalm-internal Serafim\SDL\TTF
  *
- * @psalm-require-extends TTF
- *
  * @mixin TTF
  *
  * @property-read object $ffi
