@@ -10,7 +10,7 @@ use FFI\Contracts\Preprocessor\PreprocessorInterface;
 use Psr\SimpleCache\CacheInterface;
 
 /**
- * @internal This is an internal library class, please do not use it in your code.
+ * @internal this is an internal library class, please do not use it in your code
  * @psalm-internal Serafim\SDL\TTF
  */
 final class CacheAwareHeader implements HeaderInterface
@@ -22,8 +22,7 @@ final class CacheAwareHeader implements HeaderInterface
         private readonly VersionInterface $ttfVersion,
         private readonly PreprocessorInterface $pre,
         private readonly CacheInterface $cache,
-    ) {
-    }
+    ) {}
 
     private function getKey(): string
     {
@@ -39,7 +38,7 @@ final class CacheAwareHeader implements HeaderInterface
         $result = $this->cache->get($this->getKey());
 
         if ($result === null) {
-            $result = (string)Header::create($this->sdlVersion, $this->ttfVersion, $this->pre);
+            $result = (string) Header::create($this->sdlVersion, $this->ttfVersion, $this->pre);
 
             $this->cache->set($this->getKey(), $result);
         }

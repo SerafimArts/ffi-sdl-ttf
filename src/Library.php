@@ -54,30 +54,18 @@ class Library extends BaseLibrary
      */
     private const LIBRARY_MAC = 'libSDL2_ttf-2.0.0.dylib';
 
-    /**
-     * @var string|null
-     */
     protected ?string $version = null;
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'SDL TTF';
     }
 
-    /**
-     * @return string
-     */
     public function getHeaders(): string
     {
         return __DIR__ . '/../resources/sdl-ttf.h';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getVersion(string $library): string
     {
         if ($this->version === null) {
@@ -91,9 +79,6 @@ class Library extends BaseLibrary
         return $this->version;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getLibrary(OperatingSystem $os, BitDepth $bits): ?string
     {
         switch (true) {
@@ -113,9 +98,6 @@ class Library extends BaseLibrary
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function suggest(OperatingSystem $os, BitDepth $bits): ?string
     {
         switch (true) {

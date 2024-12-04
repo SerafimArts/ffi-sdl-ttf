@@ -30,12 +30,14 @@ enum Version: string implements VersionInterface, ComparableInterface
 
     /**
      * @link https://github.com/libsdl-org/SDL_ttf/releases/tag/release-2.19.2
+     *
      * @deprecated This is prerelease version
      */
     case V2_19_2 = '2.19.2';
 
     /**
      * @link https://github.com/libsdl-org/SDL_ttf/releases/tag/release-2.19.3
+     *
      * @deprecated This is prerelease version
      */
     case V2_19_3 = '2.19.3';

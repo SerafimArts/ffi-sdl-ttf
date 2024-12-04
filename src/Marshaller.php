@@ -7,10 +7,11 @@ namespace Serafim\SDL\TTF;
 use FFI\CData;
 
 /**
- * @internal This is an internal library trait, please do not use it in your code.
+ * @internal this is an internal library trait, please do not use it in your code
  * @psalm-internal Serafim\SDL\TTF
  *
  * @psalm-require-extends TTF
+ *
  * @mixin TTF
  *
  * @property-read object $ffi
